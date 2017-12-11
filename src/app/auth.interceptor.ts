@@ -7,9 +7,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    console.log(req);
+    let clone = req.clone({
+      headers: req.headers.set('auth-token-example', '20984091283092183092180312')
+    });
 
-    return next.handle(req);
+    return next.handle(clone);
 
   }
 
